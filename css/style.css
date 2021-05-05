@@ -18,12 +18,8 @@ header {
     width: 100%;
     top: 0;
     left: 0;
+    z-index: 2;
 }
-main {
-    min-height: 80vh;
-    margin-top: 150px;
-}
-
 
 header .container {
     display: flex;
@@ -42,7 +38,20 @@ header nav ul li {
     padding: 10px;
 }
 
-header nav ul li a {
+header nav ul li a:after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    display: block;
+    transition: 0.5s;
+}
+
+header nav ul li:hover a:after {
+    width: 100%;
+}
+
+header nav ul li a:any-link {
     text-decoration: none;
     color: #fff;
     text-transform: uppercase;
@@ -54,6 +63,10 @@ header nav ul li a {
     margin: 0 auto;
 }
 
+a.btn-primary:any-link {
+    color: #fff;
+}
+
 .btn-primary {
     padding: 10px 30px;
     background-color: #00796B;
@@ -61,10 +74,23 @@ header nav ul li a {
     text-transform: uppercase;
     display: inline-block;
     text-decoration: none;
+    transition: all 0.5s;
+    box-shadow: 0px 5px 6px rgb(0 0 0 / 30%);
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #61b6ac;
+}
+
+a:any-link {
+    color: #00796B;
+    text-decoration: none;
 }
 
 main {
-    min-height: 80vh;
+    min-height: 75vh;
+    margin-top: 120px;
 }
 
 section.banner {
@@ -124,9 +150,17 @@ section.desenvolvimento .container,
 section.marketing .container,
 section.consultoria-ux .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 40px 0;
+}
+
+section.desenvolvimento .container .texto,
+section.marketing .container .texto,
+section.consultoria-ux .container .texto {
+    width: 400px;
+    max-width: 100%;
+    padding: 20px;
 }
 
 section.marketing .container {
@@ -192,4 +226,98 @@ main h1 {
     max-width: 100%;
     width: 700px;
     height: 300px;
+}
+
+@keyframes flutuar {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.img-destaque {
+    animation: flutuar 3s infinite;
+    width: 500px;
+    max-width: 100%;
+}
+
+@media (max-width: 900px) {
+
+    section.banner .container,
+    section.introducao-sobre .container .intro,
+    section.desenvolvimento .container,
+    section.marketing .container,
+    section.consultoria-ux .container {
+        flex-wrap: wrap;
+    }
+
+    section.desenvolvimento .container .texto,
+    section.marketing .container .texto,
+    section.consultoria-ux .container .texto {
+        text-align: center;
+    }
+
+
+
+    section.introducao-sobre {
+        padding: 0 40px;
+    }
+
+    section.video-sobre iframe {
+        height: 400px;
+        padding: 40px;
+    }
+
+    section.banner .container .texto {
+        text-align: center;
+    }
+
+    section.banner {
+        padding: 0 40px 40px;
+    }
+
+    main h1 {
+        text-align: center;
+    }
+
+    .contato {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .contato form {
+        padding: 0 40px;
+    }
+
+    .contato .info {
+        padding: 15px 40px;
+    }
+}
+
+@media (max-width: 515px) {
+    header .container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    header nav ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    section.desenvolvimento .container,
+    section.marketing .container,
+    section.consultoria-ux .container {
+        justify-content: center;
+        text-align: center;
+        padding: 30px;
+    }
+
 }
